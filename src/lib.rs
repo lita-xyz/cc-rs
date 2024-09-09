@@ -2174,6 +2174,9 @@ impl Build {
                             )
                             .into(),
                         );
+                    } else if arch == "delendum" {
+                        // For now this is really simple. Our Rust triple matches the CC triple.
+                        cmd.args.push(format!("--target={}", target).into());
                     } else if target.contains("uefi") {
                         if target.contains("x86_64") {
                             cmd.args.push("--target=x86_64-unknown-windows-gnu".into());
@@ -2414,6 +2417,10 @@ impl Build {
                         // lowest common denominator FPU
                         cmd.args.push("-mfpu=vfpv3-d16".into());
                     }
+                }
+                if target.starts_with("delendum") {
+                    // For now this is really simple. Our Rust triple matches the CC triple.
+                    cmd.args.push(format!("--target={}", target).into());
                 }
                 if target.starts_with("riscv32") || target.starts_with("riscv64") {
                     // get the 32i/32imac/32imc/64gc/64imac/... part
