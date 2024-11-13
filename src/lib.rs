@@ -2174,7 +2174,7 @@ impl Build {
                             )
                             .into(),
                         );
-                    } else if arch == "delendum" {
+                    } else if arch == "valida" {
                         // For now this is really simple. Our Rust triple matches the CC triple.
                         cmd.args.push(format!("--target={}", target).into());
                     } else if target.contains("uefi") {
@@ -2418,7 +2418,7 @@ impl Build {
                         cmd.args.push("-mfpu=vfpv3-d16".into());
                     }
                 }
-                if target.starts_with("delendum") {
+                if target.starts_with("valida") {
                     // For now this is really simple. Our Rust triple matches the CC triple.
                     cmd.args.push(format!("--target={}", target).into());
                 }
